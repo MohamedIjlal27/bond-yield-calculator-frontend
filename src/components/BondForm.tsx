@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { BondInputs } from "@/types/bond";
-import { BOND_DEFAULTS, VALIDATION_MESSAGES } from "@/lib/constants";
+import { VALIDATION_MESSAGES } from "@/lib/constants";
 
 const bondSchema = z.object({
   faceValue: z.number().positive(VALIDATION_MESSAGES.faceValuePositive),
@@ -27,7 +27,6 @@ export default function BondForm({ onSubmit, isLoading }: BondFormProps) {
     formState: { errors },
   } = useForm<BondInputs>({
     resolver: zodResolver(bondSchema),
-    defaultValues: BOND_DEFAULTS,
   });
 
   const handleReset = () => {
@@ -36,7 +35,7 @@ export default function BondForm({ onSubmit, isLoading }: BondFormProps) {
       annualCouponRate: undefined,
       marketPrice: undefined,
       yearsToMaturity: undefined,
-      couponFrequency: "" as "",
+      couponFrequency: undefined,
     });
   };
 
