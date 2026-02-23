@@ -67,22 +67,51 @@ npm install
 
 ### Environment Variables
 
-Create a `.env.local` file in the frontend root directory:
+The application uses environment variables for configuration. Create a `.env.local` file in the frontend root directory for local development.
+
+#### Creating the .env.local File
+
+1. In the root of the frontend directory, create a file named `.env.local`
+2. Add the following environment variables:
 
 ```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
+# Frontend Environment Variables
+# API Base URL for the backend service (used by both client and server)
+NEXT_PUBLIC_API_BASE_URL=http://localhost:3001
 ```
 
-**Important**: The variable must be prefixed with `NEXT_PUBLIC_` to be accessible in the browser.
+#### Environment Variables Explained
 
-### API Base URL
+| Variable                   | Description              | Local Development       | Production                                         |
+| -------------------------- | ------------------------ | ----------------------- | -------------------------------------------------- |
+| `NEXT_PUBLIC_API_BASE_URL` | Backend API endpoint URL | `http://localhost:3001` | `https://bond-yield-calculator-backend.vercel.app` |
 
-The application connects to the backend API at the URL specified in `NEXT_PUBLIC_API_BASE_URL`. The default is `http://localhost:3000`.
+#### Important Notes
 
-To change the API URL:
+- **NEXT*PUBLIC* Prefix**: Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser and can be used in client-side code
+- **Server Actions**: This app uses Next.js Server Actions, so the API calls happen server-side
+- **Local Development**: Set to `http://localhost:3001` to connect to local backend
+- **Production**: Set to your deployed backend URL (e.g., Vercel deployment)
 
-1. Edit `.env.local`
-2. Restart the development server
+#### Vercel Deployment Environment Variables
+
+When deploying to Vercel, add these environment variables in the Vercel Dashboard:
+
+1. Go to your project settings on Vercel
+2. Navigate to **Settings** → **Environment Variables**
+3. Add:
+   - **Name**: `NEXT_PUBLIC_API_BASE_URL`
+   - **Value**: `https://bond-yield-calculator-backend.vercel.app` (or your backend URL)
+   - **Environments**: Select Production, Preview, and Development
+4. Redeploy the application
+
+### Changing the API URL
+
+To connect to a different backend:
+
+1. Edit `.env.local` and update `NEXT_PUBLIC_API_BASE_URL`
+2. Restart the development server (`npm run dev`)
+3. The application will now connect to the new backend URL
 
 ## Running the Application
 
