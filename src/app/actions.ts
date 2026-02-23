@@ -3,7 +3,8 @@
 import { BondInputs, BondCalculationResponse } from "@/types/bond";
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001";
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://bond-yield-calculator-backend.vercel.app";
 
 export async function calculateBondAction(
   inputs: BondInputs,
