@@ -55,17 +55,11 @@ export async function calculateBondAction(
     const data: BondCalculationResponse = await response.json();
 
     console.log("Successfully received data from backend:", fullUrl);
+    console.log("Backend URL used:", API_BASE_URL);
 
     return {
       success: true,
-      data: {
-        ...data,
-        // Add debug info about which backend was used
-        _debug: {
-          backendUrl: API_BASE_URL,
-          timestamp: new Date().toISOString(),
-        },
-      },
+      data,
     };
   } catch (error) {
     console.error("Error in calculateBondAction:", error);
