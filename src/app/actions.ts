@@ -13,6 +13,10 @@ export async function calculateBondAction(
   | { success: false; error: string }
 > {
   try {
+    // Log the API URL for debugging
+    console.log("API_BASE_URL:", API_BASE_URL);
+    console.log("Full request URL:", `${API_BASE_URL}/api/v1/bonds/calculate`);
+    
     const response = await fetch(`${API_BASE_URL}/api/v1/bonds/calculate`, {
       method: "POST",
       headers: {
