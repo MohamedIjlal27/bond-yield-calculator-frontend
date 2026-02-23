@@ -14,10 +14,11 @@ export async function calculateBondAction(
 > {
   try {
     // Log the API URL for debugging
+    const fullUrl = `${API_BASE_URL}/api/v1/bonds/calculate`;
     console.log("API_BASE_URL:", API_BASE_URL);
-    console.log("Full request URL:", `${API_BASE_URL}/api/v1/bonds/calculate`);
+    console.log("Full request URL:", fullUrl);
 
-    const response = await fetch(`${API_BASE_URL}/api/v1/bonds/calculate`, {
+    const response = await fetch(fullUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +26,9 @@ export async function calculateBondAction(
       body: JSON.stringify(inputs),
       cache: "no-store",
     });
+
+    console.log("Backend response status:", response.status);
+    console.log("Backend API called:", fullUrl);
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => null);
@@ -50,9 +54,18 @@ export async function calculateBondAction(
 
     const data: BondCalculationResponse = await response.json();
 
+    console.log("Successfully received data from backend:", fullUrl);
+
     return {
       success: true,
-      data,
+      data: {
+        ...data,
+        // Add debug info about which backend was used
+        _debug: {
+          backendUrl: API_BASE_URL,
+          timestamp: new Date().toISOString(),
+        },
+      },
     };
   } catch (error) {
     console.error("Error in calculateBondAction:", error);
