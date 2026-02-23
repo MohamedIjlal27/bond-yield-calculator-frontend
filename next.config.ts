@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
 
   // Type-safe routing
   typedRoutes: true,
+
+  // Explicitly set turbopack root to avoid multiple lockfile warnings
+  turbopack: {
+    root: __dirname,
+  },
 };
 
 export default nextConfig;
