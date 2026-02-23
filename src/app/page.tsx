@@ -31,12 +31,17 @@ export default function Home() {
               </p>
             </div>
             <div className="hidden sm:block">
-              <div className="flex items-center space-x-2 text-sm text-gray-500">
-                <span
-                  className="w-2 h-2 bg-green-500 rounded-full"
-                  aria-label="Status indicator"
-                ></span>
-                <span>Connected to API</span>
+              <div className="flex flex-col items-end space-y-1">
+                <div className="flex items-center space-x-2 text-sm text-gray-500">
+                  <span
+                    className="w-2 h-2 bg-green-500 rounded-full"
+                    aria-label="Status indicator"
+                  ></span>
+                  <span>Connected to API</span>
+                </div>
+                <div className="text-xs text-gray-400">
+                  Backend: {process.env.NEXT_PUBLIC_API_BASE_URL || "https://bond-yield-calculator-backend.vercel.app"}
+                </div>
               </div>
             </div>
           </div>

@@ -15,7 +15,12 @@ export default function BondCalculator() {
   const handleCalculate = async (data: BondInputs) => {
     startTransition(async () => {
       try {
+        console.log("🚀 Calling backend API via Server Action...");
+        console.log("Input data:", data);
+        
         const result = await calculateBondAction(data);
+        
+        console.log("✅ Received response from Server Action");
 
         if (result.success) {
           setResults(result.data);
