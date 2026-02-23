@@ -10,11 +10,11 @@ export const APP_CONFIG = {
 } as const;
 
 export const BOND_DEFAULTS = {
-  faceValue: 1000,
-  annualCouponRate: 5,
-  marketPrice: 950,
-  yearsToMaturity: 5,
-  couponFrequency: "semiAnnual" as const,
+  faceValue: "",
+  annualCouponRate: "",
+  marketPrice: "",
+  yearsToMaturity: "",
+  couponFrequency: "",
 } as const;
 
 export const VALIDATION_MESSAGES = {

@@ -31,7 +31,13 @@ export default function BondForm({ onSubmit, isLoading }: BondFormProps) {
   });
 
   const handleReset = () => {
-    reset(BOND_DEFAULTS);
+    reset({
+      faceValue: undefined,
+      annualCouponRate: undefined,
+      marketPrice: undefined,
+      yearsToMaturity: undefined,
+      couponFrequency: "" as "",
+    });
   };
 
   return (
@@ -49,6 +55,7 @@ export default function BondForm({ onSubmit, isLoading }: BondFormProps) {
             id="faceValue"
             type="number"
             step="0.01"
+            placeholder="Enter face value (e.g., 1000)"
             {...register("faceValue", { valueAsNumber: true })}
             className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               errors.faceValue ? "border-red-500" : "border-gray-300"
@@ -74,6 +81,7 @@ export default function BondForm({ onSubmit, isLoading }: BondFormProps) {
             id="annualCouponRate"
             type="number"
             step="0.01"
+            placeholder="Enter coupon rate (e.g., 5)"
             {...register("annualCouponRate", { valueAsNumber: true })}
             className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               errors.annualCouponRate ? "border-red-500" : "border-gray-300"
@@ -99,6 +107,7 @@ export default function BondForm({ onSubmit, isLoading }: BondFormProps) {
             id="marketPrice"
             type="number"
             step="0.01"
+            placeholder="Enter market price (e.g., 950)"
             {...register("marketPrice", { valueAsNumber: true })}
             className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               errors.marketPrice ? "border-red-500" : "border-gray-300"
@@ -124,6 +133,7 @@ export default function BondForm({ onSubmit, isLoading }: BondFormProps) {
             id="yearsToMaturity"
             type="number"
             step="0.01"
+            placeholder="Enter years to maturity (e.g., 5)"
             {...register("yearsToMaturity", { valueAsNumber: true })}
             className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               errors.yearsToMaturity ? "border-red-500" : "border-gray-300"
